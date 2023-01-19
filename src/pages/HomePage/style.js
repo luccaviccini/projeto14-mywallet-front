@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ export const ContainerBtns = styled.div`
   margin-top: 13px;
 `;
 
-export const Btn = styled.div`
+export const Btn = styled(Link)`
   width: 155px;
   height: 114px;
   background: #a328d6;
@@ -60,10 +61,11 @@ export const LogBox = styled.div`
 
 export const ContainerHeader = styled.div`
   display: flex;
-  width: calc(100vw - 50px);
+  width: calc(100% );
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 13px;
+  background-color: #8c11be;
 `;
 
 export const GreetingMsg = styled.h1`

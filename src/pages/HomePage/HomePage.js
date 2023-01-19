@@ -1,11 +1,19 @@
-import { Container } from "../../styles/commonStyles";
-import { ContainerBtns, Btn, LogBox, ContainerHeader, GreetingMsg } from "./style";
+import { Container } from "./style";
+import {
+  ContainerBtns,
+  Btn,
+  LogBox,
+  ContainerHeader,
+  GreetingMsg,
+} from "./style";
 import Logo from "../../assets/VectorOut.svg";
 import Plus from "../../assets/plus.svg";
 import Minus from "../../assets/minus.svg";
-
+//import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
+  //const navigate = useNavigate();
+
   return (
     <Container>
       <ContainerHeader>
@@ -16,13 +24,13 @@ export default function HomePage() {
         Não há registros de <br /> entrada ou saída
       </LogBox>
       <ContainerBtns>
-        <Btn>
+        <Btn to="/nova-entrada">
           <img src={Plus} alt="Botão de adicionar" />
           Nova <br />
           Entrada
         </Btn>
 
-        <Btn>
+        <Btn to="/nova-saida">
           <img src={Minus} alt="Botão de retirar" />
           Nova <br />
           Saída
@@ -31,6 +39,3 @@ export default function HomePage() {
     </Container>
   );
 }
-
-
-
