@@ -46,22 +46,53 @@ export const LogBox = styled.div`
   background: #ffffff;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-
+  justify-content: flex-start;
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 23px;
   text-align: center;
-
+  padding-top: 23px;
   color: #868686;
+  position: relative;
+`;
+
+export const ContainerSaldo = styled.div`
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 5px;
+
+  .saldoTxt {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    color: #000000;
+  }
+
+  .saldoVal {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    /* identical to box height */
+
+    text-align: right;
+
+    color: ${(props) => (props.userBalance > 0  ? "#03ac00" : "#c70000")}};
+  
 `;
 
 export const ContainerHeader = styled.div`
   display: flex;
-  width: calc(100% );
+  width: calc(100%);
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 13px;
@@ -75,4 +106,49 @@ export const GreetingMsg = styled.h1`
   font-weight: 700;
   font-size: 26px;
   line-height: 31px;
+`;
+
+export const Entry = styled.div`
+  width: calc(100% - 40px);
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .out {
+    color: #c70000;
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+  }
+  .in {
+    color: #03ac00;
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+  }
+  .description {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    margin-left: 5px;
+  }
+
+  .date {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #c6c6c6;
+  }
 `;
