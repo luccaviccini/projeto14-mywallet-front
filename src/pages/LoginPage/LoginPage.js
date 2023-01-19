@@ -17,7 +17,7 @@ export default function LoginPage() {
 
 
   return (
-    <Container>
+    <Container> 
       <Title>MyWallet</Title>
       <StyledForm onSubmit={handleSubmit}>
         <StyledInput type="text" placeholder="Username" />

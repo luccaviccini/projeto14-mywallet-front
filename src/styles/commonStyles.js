@@ -9,8 +9,11 @@ export const Container = styled.div`
   background-color: #8c11be;
   height: 100vh;
   max-height: 100vh;
+  width: 100vw;
   max-width: 412px;
-  padding: 0 25px;
+  padding: 25px 25px;
+  position: relative;
+
 `;
 
 export const Title = styled.h1`
