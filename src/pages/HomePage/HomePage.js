@@ -17,8 +17,7 @@ import Minus from "../../assets/minus.svg";
 
 export default function HomePage() {
   //const navigate = useNavigate();
-  const inOut = 1;
-  const income = -10;
+  
   let userBalance = 0;
 
   const mylist = [
@@ -27,14 +26,10 @@ export default function HomePage() {
     {date: "11/02", description: "Descrição", value: "50,00", inOut: 1},
   ];
 
-  mylist.forEach((item) => {
+  mylist.forEach((item) => {   
     
-    
-    let myMoney = Number(item.value.replace(",", "."));
-       
+    let myMoney = Number(item.value.replace(",", "."));     
 
-    
-    
     if (item.inOut === 1) {
       
       userBalance += myMoney;
@@ -46,7 +41,7 @@ export default function HomePage() {
   });
   userBalance = userBalance.toFixed(2);
   userBalance = userBalance.replace(".", ",");
-  
+
   return (
     <Container>
       <ContainerHeader>
