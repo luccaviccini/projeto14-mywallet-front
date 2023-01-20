@@ -12,6 +12,7 @@ import Logo from "../../assets/VectorOut.svg";
 import Plus from "../../assets/plus.svg";
 import Minus from "../../assets/minus.svg";
 //import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -46,10 +47,11 @@ export default function HomePage() {
     <Container>
       <ContainerHeader>
         <GreetingMsg>Olá, Fulano</GreetingMsg>
-        <img src={Logo} alt="Logo MyWallet" />
+        <Link to="/">
+          <img  src={Logo} alt="Logo MyWallet" />
+        </Link>
       </ContainerHeader>
       <LogBox>
-
         {mylist.map((item, index) => (
           <Entry key={index}>
             <span className="myclass">
@@ -59,11 +61,11 @@ export default function HomePage() {
             <span className={item.inOut ? "in" : "out"}> {item.value} </span>
           </Entry>
         ))}
-        
-      <ContainerSaldo userBalance={userBalance} >
-        <span className="saldoTxt">Saldo</span>
-        <span className="saldoVal">{userBalance}</span>
-      </ContainerSaldo>
+
+        <ContainerSaldo userBalance={userBalance}>
+          <span className="saldoTxt">Saldo</span>
+          <span className="saldoVal">{userBalance}</span>
+        </ContainerSaldo>
       </LogBox>
       <ContainerBtns>
         <Btn to="/nova-entrada">
