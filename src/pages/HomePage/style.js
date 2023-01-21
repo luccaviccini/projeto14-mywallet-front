@@ -117,7 +117,7 @@ export const Entry = styled.div`
 
   .inOut {
     color: ${(props) =>
-      props.type == "income" ? "#03ac00" : "#c70000"};
+      props.type ==="income" ? "#03ac00" : "#c70000"};
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;

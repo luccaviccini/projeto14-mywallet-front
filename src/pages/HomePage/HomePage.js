@@ -35,7 +35,7 @@ export default function HomePage() {
       });
   }
 
-  useEffect(getEntriesList, []);
+  useEffect(getEntriesList, [user.token]);
   console.log(userEntries.entries);
    
   let userBalance = userEntries.balance;
