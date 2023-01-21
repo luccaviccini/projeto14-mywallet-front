@@ -44,7 +44,7 @@ export default function HomePage() {
   return (
     <Container>
       <ContainerHeader>
-        <GreetingMsg>Olá, Fulano</GreetingMsg>
+        <GreetingMsg>Olá, {user.name}</GreetingMsg>
         <Link to="/">
           <img src={Logo} alt="Logo MyWallet" />
         </Link>
