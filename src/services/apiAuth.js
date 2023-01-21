@@ -10,8 +10,6 @@ function login(body) {
 function register(body) {
 
   // create body without confirmPassword
-  
-
   return axios.post(`${BASE_URL}/register`, body);
 }
 

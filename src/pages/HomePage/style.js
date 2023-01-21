@@ -115,8 +115,9 @@ export const Entry = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .out {
-    color: #c70000;
+  .inOut {
+    color: ${(props) =>
+      props.type == "income" ? "#03ac00" : "#c70000"};
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
@@ -124,15 +125,7 @@ export const Entry = styled.div`
     line-height: 19px;
     text-align: right;
   }
-  .in {
-    color: #03ac00;
-    font-family: "Raleway";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: right;
-  }
+ 
   .description {
     font-family: "Raleway";
     font-style: normal;

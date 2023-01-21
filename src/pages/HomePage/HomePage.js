@@ -13,54 +13,88 @@ import Plus from "../../assets/plus.svg";
 import Minus from "../../assets/minus.svg";
 //import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { apiEntry } from "../../services/apiEntry";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext, useEffect, useState } from "react";
 
 
 export default function HomePage() {
   //const navigate = useNavigate();
   
-  let userBalance = 0;
+  // let userBalance = 0;
 
-  const mylist = [
-    {date: "11/02", description: "Descrição", value: "50,00", inOut: 0},
-    {date: "11/02", description: "Descrição", value: "50,00", inOut: 0},
-    {date: "11/02", description: "Descrição", value: "50,00", inOut: 1},
-  ];
+  // const mylist = [
+  //   {date: "11/02", description: "Descrição", value: "50,00"},
+  //   {date: "11/02", description: "Descrição", value: "50,00"},
+  //   {date: "11/02", description: "Descrição", value: "50,00"},
+  // ];
 
-  mylist.forEach((item) => {   
+  
+
+  // mylist.forEach((item) => {   
     
-    let myMoney = Number(item.value.replace(",", "."));     
+  //   let myMoney = Number(item.value.replace(",", "."));     
+  //   console.log(myMoney)
+  //   userBalance += myMoney;
 
-    if (item.inOut === 1) {
-      
-      userBalance += myMoney;
-      
-    }
-    else{
-      userBalance -= myMoney;
-    }
-  });
-  userBalance = userBalance.toFixed(2);
-  userBalance = userBalance.replace(".", ",");
+    
+  // });
+  // userBalance = userBalance.toFixed(2);
+  
+  // console.log(userBalance);
+
+  //get entries from db
+  const { user } = useContext(UserContext);
+  const [userEntries, setUserEntries] = useState([]);
+
+  useEffect(() => {
+    apiEntry
+      .getEntries(user.token)
+      .then((res) => {
+        console.log("Resposta do Servidor:", res.data);
+        setUserEntries(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  }, []);
+
+  
+
+   
+  let userBalance = userEntries.balance;
+
 
   return (
     <Container>
       <ContainerHeader>
         <GreetingMsg>Olá, Fulano</GreetingMsg>
         <Link to="/">
-          <img  src={Logo} alt="Logo MyWallet" />
+          <img src={Logo} alt="Logo MyWallet" />
         </Link>
       </ContainerHeader>
       <LogBox>
-        {mylist.map((item, index) => (
-          <Entry key={index}>
+        {userEntries.length > 0?
+        userEntries.entries.map((entry, index) => (
+          <Entry key={index} value={entry.value} type={entry.type}>
             <span className="myclass">
-              {item.date}
-              <span className="description"> {item.description} </span>
+              {entry.date}
+              <span className="description"> {entry.description} </span>
             </span>
-            <span className={item.inOut ? "in" : "out"}> {item.value} </span>
+            <span className="inOut"> {entry.value} </span>
           </Entry>
-        ))}
+        ))        
+        : <h1>Não há registros de entrada ou saída</h1>}
+
+        {/* {userEntries.entries.map((entry, index) => (
+          <Entry key={index} value={entry.value} type={entry.type}>
+            <span className="myclass">
+              {entry.date}
+              <span className="description"> {entry.description} </span>
+            </span>
+            <span className="inOut"> {entry.value} </span>
+          </Entry>
+        ))} */}
 
         <ContainerSaldo userBalance={userBalance}>
           <span className="saldoTxt">Saldo</span>

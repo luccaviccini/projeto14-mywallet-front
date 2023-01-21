@@ -6,11 +6,14 @@ import StyledButton from "../../components/StyledButton";
 import StyledLink from "../../components/StyledLink";
 import { useNavigate } from "react-router-dom";
 import apiAuth from "../../services/apiAuth";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   function handleForm(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,6 +26,7 @@ export default function LoginPage() {
       .login(form)
       .then((res) => {
         console.log(res.data);
+        setUser(res.data);
         navigate("/home");
       })
       .catch((err) => {
