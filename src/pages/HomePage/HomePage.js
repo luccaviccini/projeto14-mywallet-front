@@ -6,7 +6,7 @@ import {
   ContainerHeader,
   GreetingMsg,
   Entry,
-  ContainerSaldo
+  ContainerSaldo,
 } from "./style";
 import Logo from "../../assets/VectorOut.svg";
 import Plus from "../../assets/plus.svg";
@@ -17,9 +17,7 @@ import { apiEntry } from "../../services/apiEntry";
 import { UserContext } from "../../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 
-
 export default function HomePage() {
-  
   const { user } = useContext(UserContext);
   const [userEntries, setUserEntries] = useState([]);
 
@@ -37,9 +35,8 @@ export default function HomePage() {
 
   useEffect(getEntriesList, [user.token]);
   console.log(userEntries.entries);
-   
-  let userBalance = userEntries.balance;
 
+  let userBalance = userEntries.balance;
 
   return (
     <Container>
@@ -50,24 +47,29 @@ export default function HomePage() {
         </Link>
       </ContainerHeader>
       <LogBox>
-        {userEntries.entries.length > 0?
-        userEntries.entries.map((entry, index) => (
-          <Entry key={index} value={entry.value} type={entry.type}>
-            <span className="myclass">
-              {entry.date}
-              <span className="description"> {entry.description} </span>
-            </span>
-            <span className="inOut"> {entry.value} </span>
-          </Entry>
-        ))        
-        : <h1>Não há registros de entrada ou saída</h1>}
-
-       
-
-        <ContainerSaldo userBalance={userBalance}>
-          <span className="saldoTxt">Saldo</span>
-          <span className="saldoVal">{userBalance}</span>
-        </ContainerSaldo>
+        {userEntries.entries.length > 0 ? (
+          <>
+            <ul>
+              {userEntries.entries.map((entry, index) => (
+                <li>
+                  <Entry key={index} value={entry.value} type={entry.type}>
+                    <span className="myclass">
+                      {entry.date}
+                      <span className="description"> {entry.description} </span>
+                    </span>
+                    <span className="inOut"> {entry.value} </span>
+                  </Entry>
+                </li>
+              ))}
+            </ul>
+            <ContainerSaldo userBalance={userBalance}>
+              <span className="saldoTxt">Saldo</span>
+              <span className="saldoVal">{userBalance}</span>
+            </ContainerSaldo>
+          </>
+        ) : (
+          <h1>Não há registros de <br/> entrada ou saída</h1>
+        )}
       </LogBox>
       <ContainerBtns>
         <Btn to="/nova-entrada">
@@ -85,5 +87,3 @@ export default function HomePage() {
     </Container>
   );
 }
-
-

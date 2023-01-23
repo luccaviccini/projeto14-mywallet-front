@@ -58,7 +58,34 @@ export const LogBox = styled.div`
   padding-top: 23px;
   color: #868686;
   position: relative;
+  ul {
+    height: calc(100% - 40px);
+    width: 100%;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    li {
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 13px;          
+    }
+  }
+  h1 {
+    margin: auto;
+    font-size: 20px;
+    font-weight: 400;
+  }
 `;
+
 
 export const ContainerSaldo = styled.div`
   width: calc(100% - 40px);
@@ -66,6 +93,7 @@ export const ContainerSaldo = styled.div`
   justify-content: space-between;
   position: absolute;
   bottom: 5px;
+  
 
   .saldoTxt {
     font-family: "Raleway";
@@ -81,9 +109,7 @@ export const ContainerSaldo = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
-    line-height: 20px;
-    /* identical to box height */
-
+    line-height: 20px; 
     text-align: right;
 
     color: ${(props) => (props.userBalance > 0  ? "#03ac00" : "#c70000")}};
